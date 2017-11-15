@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script>
+	
+	
+	$(document).on('blur', 'tr input[type=text]:last', function() {
+		
+      var willAdd = true, tr = $(this).closest('tr');
+
+      tr.find('input[type=text]').each(function() {
+          if ($(this).val() == '')
+              willAdd = false;
+      });
+ 
+      if (!willAdd || tr.next('tr').length) return;
+
+	
+      $('table > tbody').append('<tr> var i=1;var h=[];<td><select name="h[i]"><option value="volvo">String</option>' + '<option value="saab">date</option>' + '<option value="mercedes">text</option>' + '<option value="audi">double</option>' + '</select></td>' +
+            '<td><input type="text" name=w[i]></td>' +
+            '<td><input type="checkbox" name=d[i]></td>' +
+						'<td><input type="checkbox" name=e[i]></td>' +
+						'<td><input type="checkbox" name=f[i]></td>' +
+            '<td><button class="delete" type="button">Delete</button></td>i++;</tr>');
+						
+});
+        
+$(document).on('click', '.delete', function () {
+      var tr = $(this).closest('tr');
+      if ($('table > tbody > tr').length > 1) {
+         tr.remove();
+      } else {
+         tr.find('input[type=text]').val('');
+      }
+});
+</script>
+<script>
+$(document).ready(function(){
+    $("#grag_textfield").click(function(){
+        $("#table_area").fadeToggle();
+        
+    });
+});
+</script>
+<style>
+	tr:nth-child(even){background-color: #f2f2f2}
+
+	#table_area{
+		display: none;
+	}
+
+	.table_area {
+    z-index: 999;
+    position: absolute;
+ 
+}
+</style>
+</head>
+
+<body>
+	<input id="grag_textfield" style=" margin-left:300px;height:70px; border:3px solid green" type="text" /><br/><br/><br/>
+	<div id="table_area"  class="table_area" >
+		<table>
+			<thead style="color:orange">
+				<tr>
+					<th>Type</th>
+					<th>Label</th>
+					<th>View</th>
+					<th>Edit</th>
+					<th>Delete</th>
+					<th>X</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+					<select  name=h[0]><option value="String">String</option>' + '<option value="date">date</option>' + '<option value="text">text</option>' + '<option value="double">double</option>' + '</select>	
+					</td>
+					<td>
+					<input type="text" name=w[0]>
+					</td>
+					<td>
+					<input type="checkbox" name=d[0]>
+					</td>
+					<td>
+					<input type="checkbox" name=e[0]>
+					</td>
+					<td>
+					<input type="checkbox" name=f[0]>
+					</td>
+					<td>
+					<button type="button">Add</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
